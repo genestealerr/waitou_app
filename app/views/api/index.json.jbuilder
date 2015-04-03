@@ -1,0 +1,1 @@
+json.extract! @places, :id, :name, :priceRate, :lattitude, :longitude, :likes
