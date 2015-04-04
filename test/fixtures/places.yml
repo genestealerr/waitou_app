@@ -2,14 +2,16 @@
 
 one:
   name: MyString
-  priceRate: 1
-  lattitude: 1.5
+  category: 1
+  pricerate: 1
+  latitude: 1.5
   longitude: 1.5
   likes: 1
 
 two:
   name: MyString
-  priceRate: 1
-  lattitude: 1.5
+  category: 1
+  pricerate: 1
+  latitude: 1.5
   longitude: 1.5
   likes: 1

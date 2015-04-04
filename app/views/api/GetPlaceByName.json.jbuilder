@@ -1,3 +1,3 @@
 if (@places)
-	json.extract! @places, :id, :name, :priceRate, :lattitude, :longitude, :likes
+	json.extract! @places, :id, :name, :category, :pricerate, :latitude, :longitude, :likes
 end

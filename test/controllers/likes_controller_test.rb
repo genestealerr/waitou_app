@@ -18,7 +18,7 @@ class LikesControllerTest < ActionController::TestCase
 
   test "should create like" do
     assert_difference('Like.count') do
-      post :create, like: { deviceId: @like.deviceId }
+      post :create, like: { deviceid: @like.deviceid }
     end
 
     assert_redirected_to like_path(assigns(:like))
@@ -35,7 +35,7 @@ class LikesControllerTest < ActionController::TestCase
   end
 
   test "should update like" do
-    patch :update, id: @like, like: { deviceId: @like.deviceId }
+    patch :update, id: @like, like: { deviceid: @like.deviceid }
     assert_redirected_to like_path(assigns(:like))
   end
 
