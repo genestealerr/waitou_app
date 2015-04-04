@@ -10,7 +10,7 @@ class ApiController < ApplicationController
 	def GetPlaceByName
 		toFind = params[:places]
 		
-		@places = Place.find_by(name: toFind)			
+		@places = Place.find_by(name: toFind)		
 	end
 	
 	# GET /GetPlacesByCategory
