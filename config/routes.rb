@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root 'api#index'
+  root 'api#GetPlaceByName'
   
   get 'api/index'
   get 'api/GetPlaceByName'
