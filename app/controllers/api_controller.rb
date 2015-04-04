@@ -8,4 +8,12 @@ class ApiController < ApplicationController
 		@places = Place.find_by(name: toFind)		
 			
 	end
+	
+	def GetPlaceByName
+	
+	end
+	
+	def GetPlacesByCategory
+	
+	end
 end
