@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  root 'api#index'
+  
   get 'api/index'
   get 'api/GetPlaceByName'
   get 'api/GetPlacesByCategory'
