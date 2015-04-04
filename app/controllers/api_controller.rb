@@ -17,7 +17,8 @@ class ApiController < ApplicationController
 	# GET /GetPlacesByCategory.json
 	def GetPlacesByCategory
 		toFind = params[:places]
+		@category = Place.find_by(category: toFind)
 		
-		#@places = Place.find_by()
+		@places = Place.all
 	end
 end
