@@ -5,8 +5,8 @@ class ApiController < ApplicationController
 	def index
 	end
 	
-	# GET /GetPlace
-	# GET /GetPlace.json
+	# GET /GetPlaces
+	# GET /GetPlaces.json
 	def GetPlaces
 		
 		@places = Places.all		
