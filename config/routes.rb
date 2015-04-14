@@ -8,10 +8,11 @@ Rails.application.routes.draw do
   get 'api/GetPlaces'
   get 'api/GetPlaceByName'
   get 'api/GetPlacesByCategory'
-  
 
   resources :places
 
+  resources :categories
+  
   resources :likes
 
   resources :users
