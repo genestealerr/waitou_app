@@ -1,0 +1,219 @@
+
+body {
+	padding-top: 80px;
+	font-family: "Lato-light";
+}
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+}
+
+/* Overriding Bootstrap navbar */
+
+.navbar {
+	background-color: #ddd;
+	min-height: 59px;
+	border:none;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+	color: #ddd;
+	background-color: #777;
+}
+
+.navbar-nav>li>a{
+	line-height: 35px;
+	font-family: "Lato-light";
+}
+
+ .navbar-default .navbar-nav.leftSide>li>a:hover{
+	color: #ddd;
+	background-color: #999;
+}
+
+.navbar-btn{
+	margin-top:13px;
+}
+
+.collapse.paddingSizeNavbar{
+	padding-right: 40px;
+}
+
+.navbar-collapse{
+	border-top: 1px transparent;
+}
+
+.navbar-brand{
+	padding:17px 25px;
+	font-family: "Lato-Thin";
+}
+
+/* Pictures managing */
+
+.logoWaitou{
+height:40px;
+width:40px;
+margin-top:-10px;
+margin-bottom:-10px;
+-webkit-transition: 0.3s; /* Safari */
+transition: 0.3s;
+}
+
+.logoWaitou:active{
+	    -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 0.5s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+	-webkit-transition: 0.3s; /* Safari */
+
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 0.5s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -moz-transition: 0.3s; /* Safari */
+
+}
+
+.imgMemberNavbar{
+	width:40px;
+	margin-right:5px;
+	margin-top:-10px;
+	margin-bottom:-10px;
+	border-radius: 200px;
+}
+
+.categoriesList{
+	display: inline-block;
+	padding: 3px;
+	text-align: center;
+}
+
+.iconCategory{
+	height:50px;
+}
+
+.placeIconList{
+	height:90px;
+	border-radius: 200px;
+}
+
+/* Buttons customization  */
+
+button{
+-webkit-transition: 0.3s; /* Safari */
+transition: 0.3s;
+}
+
+button:hover{
+-webkit-transition: 0.3s; /* Safari */
+transition: 0.3s;
+}
+
+.btn-disconnect, .navbar-nav>li>a.navbar-btn{
+color: #777;
+background-color: transparent;
+border-color: #777;
+margin:0;
+line-height: 18px;
+}
+
+.btn-disconnect:hover, .navbar-nav>li>a.navbar-btn{
+color: #ddd;
+background-color: #d9534f;
+border-color: #d9534f;
+}
+
+.btn-update, .btn-update:focus{
+color: #fff;
+background-color: #71bffb;
+}
+
+.btn-update:hover{
+color: #fff;
+background-color: #4496d6;
+}
+
+/* Overriding Bootstrap Tables */
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+	vertical-align: middle;
+	text-align: center;
+	border:none;
+}
+
+#placeListTable.table>tbody>tr>td{
+	/*line-height: 80px;*/
+}
+
+/* Special Fonts */
+
+.navbar-nav>li>a.userName{
+	font-family: "Lato";
+}
+
+/* Custom CSS icons */
+
+.PriceRateTrue{
+	display: inline-block;
+	background-color: #fecb0c;
+	width:15px;
+	height:15px;
+	border-radius: 200px;
+}
+
+.PriceRateFalse{
+	display: inline-block;
+	background-color: #fff8c9;
+	width:15px;
+	height:15px;
+	border-radius: 200px;
+}
+
+.uploadImage{
+	cursor: pointer;
+}
+
+#connectionModal{
+	display: block;
+}
+
+.popover{
+	text-align: center;
+}
+
+.img-checkbox{
+-webkit-transition: 0.3s; /* Safari */
+transition: 0.3s;
+cursor: pointer;
+}
+
+.img-checkbox-group{
+	text-align: center;
+	display:inline-block;
+}
+
+.img-checkbox{
+	display:inline-block;
+	border:1px #777 solid;
+	border-radius: 5px;
+	padding:10px;
+	min-width: 80px;
+	margin-left:10px;
+}
+
+.img-checkbox-group>.img-checkbox:first-child{
+	margin-left: 0px;
+}
+
+.img-checkbox.active, .img-checkbox:active{
+	background-color: #5cb85c;
+	border-color: transparent;
+	color:#fff;
+	border-radius: 5px;
+}

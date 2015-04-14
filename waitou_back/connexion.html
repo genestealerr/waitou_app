@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Waitou connexion</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/custom.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="modal" id="connectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Connection</h4>
+				</div>
+				<form method="get" id="connectionForm" onsubmit="window.location.href = 'index.html'; return false;">
+					<div class="modal-body">
+						<div class="rows">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4>Mail</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-envelope"></span></span>
+										<input type="email" class="form-control" required/> <!-- Clicked place name -->
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<h4>Password</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-lock"></span></span>
+										<input type="password" class="form-control" required/> <!-- Clicked place name -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" id="connectSubmit" class="btn btn-primary">Connect</button>
+						<input type="submit" id="test" style="display:none;">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/custom-modal.js"></script>
+</body>
+</html>

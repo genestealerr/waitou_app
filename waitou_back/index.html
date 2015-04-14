@@ -1,0 +1,271 @@
+<!doctype html>
+<html ng-app="Waitou">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Waitou Administration page</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+	<link href="css/custom.css" rel="stylesheet" type="text/css">
+	<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/angular.min.js"></script>
+	<script language="javascript" type="text/javascript" src="js/waitou-app.start.js"></script>
+</head>
+<body ng-controller="MainCtrl">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#waitouNavbarMenu"> <!-- Shown when size too small and show data-target-->
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img alt="Logo Waitou" class="logoWaitou" src="img/iconWaitou" /> Waitou</a>
+		</div>
+
+		<div class="collapse paddingSizeNavbar navbar-collapse" id="waitouNavbarMenu">
+			<ul class="nav navbar-nav leftSide"> <!-- leftSide is used to distinguish li>a at the left and User profile button -->
+				<li class="active"><a href="#">Places list <span class="sr-only">(current)</span></a></li>
+				<li><a href="#">Likes Charts</a></li>
+				<li><a href="#">Settings</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" class="userName"><img src="img/imgMember.png" class="imgMemberNavbar"/> Name Surname</a></li>
+				<li><a href="connexion.html"><button type="button" class="btn btn-disconnect navbar-btn" role="button">Disconnect</button></a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<div class="container">
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#newPlace">
+			<span class="glyphicon glyphicon-plus"></span> Add a place
+		</button>
+		{{greeting}}
+		<table class="table" id="placeListTable">
+			<thead>
+				<th>Picture</th>
+				<th>Name of the place</th>
+				<th>Category</th>
+				<th>Price Rate</th>
+			</thead>
+
+			<tr class="place" ng-repeat="place in places"> <!-- For each Place in DB -->
+				<td><img class="placeIconList" src="{{place.picture}}"></td> <!-- Place picture url -->
+				<td>{{place.name}}</td> <!-- Place name -->
+				<td>
+					<ul>
+						<li class="categoriesList" ng-repeat="category in categories |  myFilter:place.category"> <!-- For each category in the DB -->
+							<img class="iconCategory" src="{{category.iconUrl}}"/> <!-- icon of the current category -->
+							<br/>
+							<span>{{category.name}}</span> <!-- name of the current category -->
+						</li>
+					</ul>
+				</td>
+				<td>
+					<!-- Repeat "Current place price rate" times -->
+					<div class="PriceRateTrue"></div>
+					<div class="PriceRateTrue"></div>
+					<div class="PriceRateTrue"></div>
+
+					<!-- Repeat (5 - "price rate") times -->
+					<div class="PriceRateFalse"></div>
+					<div class="PriceRateFalse"></div>
+				</td>
+				<td>
+					<!-- Open updateModal Modal with place infos params -->
+					<button id="updateButton" type="button" class="btn btn-update" data-toggle="modal" data-target="#updateModal" data-place-name="{{place.name}}" data-place-description="{{place.description}}" data-place-creator-name="{{place.creatorName}}" data-place-creation-date="{{place.creationDate}}" data-place-picture="{{place.picture}}" data-place-price-rate="{{place.priceRate}}" data-place-longitude="{{place.longitude}}" data-place-lattitude="{{place.lattitude}}">Update</button> 
+					<button type="button" class="btn btn-danger btn-delete delete-place" title="Are you sure you want to delete the place '{{place.name}}' ?" data-trigger="focus" data-toggle="popover" data-placement="top">
+						Delete
+					</button>
+				</td>
+			</tr>
+
+		</table>
+	</div>
+
+	<div class="modal fade" id="updateModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title placeName">Update a place</h2> <!-- Clicked place name -->
+					<p>Submitted by <a href="#" class="placeCreatorName"></a></p> <!-- Place submitter name -->
+
+					<a data-toggle="collapse" href="#seeModificationCollapse" aria-expanded="false" aria-controls="collapseExample">
+						See modification
+					</a>
+
+					<div class="collapse" id="seeModificationCollapse">
+						<ul>
+							<li>Updated by <span class="placeCreatorName"></span> the <span class="placeCreationDate"></span></li> <!-- Last updater of clicked place // Date -->
+							<li>Created by <span class="placeCreatorName"></span> the <span class="placeCreationDate"></span></li> <!-- First updater of clicked place // Date -->
+						</ul>
+					</div>
+				</div>
+				<div class="modal-body">
+					<form method="get" id="updateForm">
+						<div class="rows">
+							<div class="row">
+								<div class="col-sm-6">
+									<h4>Place name</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tree-conifer"></span></span>
+										<input class="form-control placeName" required/> <!-- Clicked place name -->
+									</div>
+								</div>
+
+								<!-- input image URL -->
+								<div class="col-sm-6">
+									<h4>Picture URL</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-camera"></span></span>
+										<input type="url" class="form-control placePicture" placeholder="Place picture url" aria-describedby="sizing-addon2" required> <!-- Picture URL -->
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- input category -->
+						<h4>Categories</h4>
+						<div class="img-checkbox-group"> <!-- Put class "active" to all "img-checkbox" which the place has -->
+							<div class="img-checkbox" id="{{category.id}}" ng-repeat="category in categories"> <!-- Repeat for each categories in the BDD -->
+								<img class="iconCategory" src="{{category.iconUrl}}"/> <!-- Category icon -->
+								<p>{{category.name}}</p> <!-- Catgory name -->
+							</div>
+						</div>
+
+						<h4>Place description</h4>
+						<div class="input-group">
+							<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-pencil"></span></span>
+							<textarea type="text" class="form-control placeDescription" placeholder="Type your description here" aria-describedby="sizing-addon2" required></textarea> <!-- Place Description -->
+						</div>
+
+						<div class="rows">
+							<div class="row">
+								<div class="col-sm-6 col-xs-12">
+									<h4>Price Rate</h4>
+									<!-- TO BE DECIDED TOGETHER -->
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-piggy-bank"></span></span>
+										<input type="number" class="form-control placePriceRate" placeholder="Price Rate (1 - 5)" required> <!-- Place Price Rate -->
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6 col-xs-12">
+									<h4>Longitude</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-resize-vertical"></span></span>
+										<input type="number" step="0.0001"  placeholder="Enter a float" class="placeLongitude form-control" required/> <!-- Place Longitude -->
+									</div>
+								</div>
+								<div class="col-sm-6 col-xs-12">
+									<h4>Lattitude</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-resize-horizontal"></span></span>
+										<input type="number" step="0.0001" placeholder="Enter a float" class="placeLattitude form-control" required/> <!-- Place Lattitude-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div><!-- /.modal-body -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-disconnect" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-update" id="updateModalFormSubmit" title="Are you sure you want to update this place ?" data-toggle="popover" data-placement="top">Save changes</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="newPlace">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h2 class="modal-title placeName">Add a new place</h2> <!-- Clicked place name -->
+				</div>
+				<div class="modal-body">
+					<form method="get" id="addPlaceForm">
+						<div class="rows">
+							<div class="row">
+								<div class="col-sm-6">
+									<h4>Place name</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-tree-conifer"></span></span>
+										<input class="form-control" placeholder="Type the place name" required/>
+									</div>
+								</div>
+
+								<!-- input image URL -->
+								<div class="col-sm-6">
+									<h4>Picture URL</h4>
+									<div class="input-group">
+										<span class="input-group-addon uploadImage" id="sizing-addon2"><span class="glyphicon glyphicon-camera"></span></span>
+										<input type="url" class="form-control" id="newPlacePicture" placeholder="Place picture url" aria-describedby="sizing-addon2" required>
+									</div>
+									<input type="file" id="submitPicture" style="display:none;"/>
+								</div>
+							</div>
+						</div>
+
+						<!-- input category -->
+						<h4>Categories</h4>
+						<div class="img-checkbox-group"> <!-- Put class "active" to all "img-checkbox" which the place has -->
+							<div class="img-checkbox" id="{{category.id}}" ng-repeat="category in categories"> <!-- Repeat for each categories in the BDD -->
+								<img class="iconCategory" src="{{category.iconUrl}}"/> <!-- Category icon -->
+								<p>{{category.name}}</p> <!-- Catgory name -->
+							</div>
+						</div>
+
+						<h4>Place description</h4>
+						<div class="input-group">
+							<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-pencil"></span></span>
+							<textarea type="text" class="form-control" placeholder="Type your description here" aria-describedby="sizing-addon2" required></textarea> <!-- Place Description -->
+						</div>
+
+						<div class="rows">
+							<div class="row">
+								<div class="col-sm-6 col-xs-12">
+									<h4>Price Rate</h4>
+									<!-- TO BE DECIDED TOGETHER -->
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-piggy-bank"></span></span>
+										<input type="number" class="form-control" placeholder="Price Rate (1 - 5)" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6 col-xs-12">
+									<h4>Longitude</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-resize-vertical"></span></span>
+										<input type="number" step="0.0001"  placeholder="Enter a float" class="form-control" required/> <!-- Place Longitude -->
+									</div>
+								</div>
+								<div class="col-sm-6 col-xs-12">
+									<h4>Lattitude</h4>
+									<div class="input-group">
+										<span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-resize-horizontal"></span></span>
+										<input type="number" step="0.0001" placeholder="Enter a float" class="form-control" required/> <!-- Place Lattitude-->
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div><!-- /.modal-body -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-disconnect" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-update" id="addPlaceModalFormSubmit" title="Are you sure you want to add this place ?" data-toggle="popover" data-placement="top">Save changes</button>
+					</div>
+				</form>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+</body>
+<script language="javascript" type="text/javascript" src="js/img-checkbox.js"></script>
+<script language="javascript" type="text/javascript" src="js/custom-modal.js"></script>
+</html>
