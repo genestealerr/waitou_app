@@ -2,12 +2,8 @@
 
 one:
   name: MyString
-  mail: MyString
-  password: MyString
-  userpicture: MyString
+  iconurl: MyString
 
 two:
   name: MyString
-  mail: MyString
-  password: MyString
-  userpicture: MyString
+  iconurl: MyString

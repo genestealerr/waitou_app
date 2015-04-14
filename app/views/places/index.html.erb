@@ -4,10 +4,14 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Description</th>
       <th>Category</th>
+      <th>Picture</th>
       <th>Pricerate</th>
-      <th>Latitude</th>
+      <th>Creator</th>
       <th>Longitude</th>
+      <th>Latitude</th>
+      <th>Updator</th>
       <th>Likes</th>
       <th colspan="3"></th>
     </tr>
@@ -17,10 +21,14 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.name %></td>
+        <td><%= place.description %></td>
         <td><%= place.category %></td>
+        <td><%= place.picture %></td>
         <td><%= place.pricerate %></td>
-        <td><%= place.latitude %></td>
+        <td><%= place.creator %></td>
         <td><%= place.longitude %></td>
+        <td><%= place.latitude %></td>
+        <td><%= place.updator %></td>
         <td><%= place.likes %></td>
         <td><%= link_to 'Show', place %></td>
         <td><%= link_to 'Edit', edit_place_path(place) %></td>

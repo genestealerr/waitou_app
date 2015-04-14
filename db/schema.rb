@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404044816) do
+ActiveRecord::Schema.define(version: 20150414080149) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.string   "iconurl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "likes", force: true do |t|
     t.integer  "deviceid"
@@ -20,21 +27,25 @@ ActiveRecord::Schema.define(version: 20150404044816) do
   end
 
   create_table "places", force: true do |t|
-    t.string   "name",       limit: 50
-    t.integer  "category"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "category",    default: 0
+    t.string   "picture"
     t.integer  "pricerate"
-    t.float    "latitude"
+    t.integer  "creator"
     t.float    "longitude"
-    t.integer  "likes"
+    t.float    "latitude"
+    t.integer  "updator",     default: 0
+    t.integer  "likes",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "role"
+    t.string   "mail"
     t.string   "password"
-    t.string   "email"
+    t.string   "userpicture"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

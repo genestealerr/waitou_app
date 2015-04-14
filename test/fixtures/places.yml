@@ -2,16 +2,24 @@
 
 one:
   name: MyString
+  description: MyString
   category: 1
+  picture: MyString
   pricerate: 1
-  latitude: 1.5
+  creator: 1
   longitude: 1.5
+  latitude: 1.5
+  updator: 1
   likes: 1
 
 two:
   name: MyString
+  description: MyString
   category: 1
+  picture: MyString
   pricerate: 1
-  latitude: 1.5
+  creator: 1
   longitude: 1.5
+  latitude: 1.5
+  updator: 1
   likes: 1

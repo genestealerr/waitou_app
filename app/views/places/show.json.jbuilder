@@ -1,1 +1,1 @@
-json.extract! @place, :id, :name, :category, :pricerate, :latitude, :longitude, :likes, :created_at, :updated_at
+json.extract! @place, :id, :name, :description, :category, :picture, :pricerate, :creator, :longitude, :latitude, :updator, :likes, :created_at, :updated_at
