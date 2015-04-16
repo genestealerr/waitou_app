@@ -114,7 +114,9 @@ class ApiController < ApplicationController
 	# GET /GetPlacesByCategory.json
 	def GetPlacesByCategory
 		toFind = params[:places]
-		@category = Place.find_by(category: toFind)
+		
+		
+		@category = Place.find_by_sql("SELECT places.* FROM places WHERE " + toFind + " = ANY (category)")
 		
 		@places = Place.all
 	end
