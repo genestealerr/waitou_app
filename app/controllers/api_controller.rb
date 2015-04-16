@@ -119,6 +119,13 @@ class ApiController < ApplicationController
 		@places = Place.all
 	end
 	
+	# GET /GetUsers
+	# GET /GetUsers.json
+	def GetUsers
+		
+		@users = User.all		
+	end
+	
 	# POST /PostUsers
 	# POST /PostUsers.json
 	def PostUsers

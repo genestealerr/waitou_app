@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'api/PostPlaces'
   get 'api/UpdatePlaces'
   get 'api/DestroyPlaces'
+  get 'api/GetUsers'
   get 'api/PostUsers'
   
   
