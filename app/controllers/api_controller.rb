@@ -27,10 +27,23 @@ class ApiController < ApplicationController
 		setLatitude = params[:latitude]
 		setUpdator = params[:updator]
 		setLikes = params[:likes]
+				
+		@return = Struct.new(:name).new("Success")
 		
-		Place.create(:name=>setName, :description=>setDescription, :category=>setCategory, :picture=>setPicture, :pricerate=>setPricerate, 
-					:creator=>setCreator, :longitude=>setLongitude, :latitude=>setLatitude, :updator=>setUpdator, :likes=>setLikes)
-	
+		verifName = Place.find_by(name: setName)
+		verifLongitude = Place.find_by(longitude: setLongitude)
+		verifLatitude = Place.find_by(latitude: setLatitude)
+		
+		if (!verifName)
+			if (verifLatitude && verifLongitude)
+				@return.name = "Error Creating : Position Already Exist"
+			else
+				Place.create(:name=>setName, :description=>setDescription, :category=>setCategory, :picture=>setPicture, :pricerate=>setPricerate, 
+							:creator=>setCreator, :longitude=>setLongitude, :latitude=>setLatitude, :updator=>setUpdator, :likes=>setLikes)
+			end
+		else
+			@return.name = "Error Creating : Name Already Exist"
+		end
 	end
 	
 	# GET /GetPlaceByName
