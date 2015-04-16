@@ -118,4 +118,29 @@ class ApiController < ApplicationController
 		
 		@places = Place.all
 	end
+	
+	# POST /PostUsers
+	# POST /PostUsers.json
+	def PostUsers
+	
+		setName = params[:name]
+		setMail = params[:mail]
+		setPwd = params[:pwd]
+		setUPict = params[:upict]
+				
+		@return = Struct.new(:name).new("Success")
+		
+		verifName = User.find_by(name: setName)
+		verifMail = User.find_by(mail: setMail)
+		
+		if (!verifName)
+			if (verifMail)
+				@return.name = "Error Creating : Mail Already Exist"
+			else
+				User.create(:name=>setName, :mail=>setMail, :password=>setPwd, :userpicture=>setUPict)
+			end
+		else
+			@return.name = "Error Creating : Name Already Exist"
+		end
+	end
 end
