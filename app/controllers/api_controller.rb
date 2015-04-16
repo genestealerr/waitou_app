@@ -62,22 +62,26 @@ class ApiController < ApplicationController
 		setUpdator = params[:updator]
 		setLikes = params[:likes]
 		
-		@place = Place.find(params[:id])
+		@place = Place.find_by_id(params[:id])
 		@return = Struct.new(:name).new("Success")
+		if (@place)
 		
-		verifName = Place.find_by(name: setName)
-		verifLongitude = Place.find_by(longitude: setLongitude)
-		verifLatitude = Place.find_by(latitude: setLatitude)
+			verifName = Place.find_by(name: setName)
+			verifLongitude = Place.find_by(longitude: setLongitude)
+			verifLatitude = Place.find_by(latitude: setLatitude)
 		
-		if (!verifName)
-			if (verifLatitude && verifLongitude)
-				@return.name = "Error Creating : Position Already Exist"
+			if (!verifName)
+				if (verifLatitude && verifLongitude)
+					@return.name = "Error Creating : Position Already Exist"
+				else
+					@place.update(:name=>setName, :description=>setDescription, :category=>setCategory, :picture=>setPicture, :pricerate=>setPricerate, 
+								:creator=>setCreator, :longitude=>setLongitude, :latitude=>setLatitude, :updator=>setUpdator, :likes=>setLikes)
+				end
 			else
-				@place.update(:name=>setName, :description=>setDescription, :category=>setCategory, :picture=>setPicture, :pricerate=>setPricerate, 
-							:creator=>setCreator, :longitude=>setLongitude, :latitude=>setLatitude, :updator=>setUpdator, :likes=>setLikes)
+				@return.name = "Error Creating : Name Already Exist"
 			end
 		else
-			@return.name = "Error Creating : Name Already Exist"
+			@return.name = "Error : Couldn't Find Place"
 		end
 	end
 	
@@ -92,8 +96,8 @@ class ApiController < ApplicationController
 		
 		if (@place)
 			@place.destroy
-		else
-			@return.name = "Fail Removing Place"
+		else	
+			@return.name = "Error : Couldn't Find Id"
 		end
 		
 	end
