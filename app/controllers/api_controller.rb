@@ -46,8 +46,8 @@ class ApiController < ApplicationController
 		end
 	end
 	
-	# POST /UpdatePlaces
-	# POST /UpdatePlaces.json
+	# UPDATE /UpdatePlaces
+	# UPDATE /UpdatePlaces.json
 	def UpdatePlaces
 	
 		setId = params[:id]
@@ -79,6 +79,23 @@ class ApiController < ApplicationController
 		else
 			@return.name = "Error Creating : Name Already Exist"
 		end
+	end
+	
+	# DESTROY /DestroyPlaces
+	# DESTROY /DestroyPlaces.json
+	def DestroyPlaces
+	
+		setId = params[:id]
+		
+		@place = Place.find_by_id(params[:id])
+		@return = Struct.new(:name).new("Success")
+		
+		if (@place)
+			@place.destroy
+		else
+			@return.name = "Fail Removing Place"
+		end
+		
 	end
 	
 	# GET /GetPlaceByName

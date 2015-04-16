@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'api/GetPlacesByCategory'
   get 'api/PostPlaces'
   get 'api/UpdatePlaces'
+  get 'api/DestroyPlaces'
   
   
   resources :places
