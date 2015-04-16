@@ -114,7 +114,7 @@ class ApiController < ApplicationController
 	# GET /GetPlacesByCategory.json
 	def GetPlacesByCategory
 		toFind = params[:places]
-		@category = Place.find_by(category: toFind)
+		@category = Place.find_by(category: [toFind])
 		
 		@places = Place.all
 	end
@@ -174,5 +174,13 @@ class ApiController < ApplicationController
 		toFind = params[:user]
 		
 		@user = User.find_by(name: toFind)		
+	end
+	
+	# GET /GetUserById
+	# GET /GetUserById.json
+	def GetUserById
+		toFind = params[:id]
+		
+		@user = User.find_by(id: toFind)		
 	end
 end

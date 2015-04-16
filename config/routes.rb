@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'api/DestroyPlaces'
   get 'api/GetUsers'
   get 'api/GetUserByName'
+  get 'api/GetUserById'
   get 'api/PostUsers'
   get 'api/DestroyUsers'
   
