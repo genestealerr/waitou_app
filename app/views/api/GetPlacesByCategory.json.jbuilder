@@ -1,7 +1,3 @@
-json.array!(@places) do |place|
-	if (@category)
-		if (place.category == @category.category)
-			json.extract! place, :id, :name, :description, :category, :picture, :pricerate, :creator, :latitude, :longitude, :updator, :likes
-		end
-	end
+json.array!(@category) do |cat|
+	json.extract! cat, :id, :name, :description, :category, :picture, :pricerate, :creator, :latitude, :longitude, :updator, :likes
 end
