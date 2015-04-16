@@ -150,4 +150,29 @@ class ApiController < ApplicationController
 			@return.name = "Error Creating : Name Already Exist"
 		end
 	end
+	
+	# DESTROY /DestroyUsers
+	# DESTROY /DestroyUsers.json
+	def DestroyUsers
+	
+		setId = params[:id]
+		
+		@user = User.find_by_id(params[:id])
+		@return = Struct.new(:name).new("Success")
+		
+		if (@user)
+			@user.destroy
+		else	
+			@return.name = "Error : Couldn't Find Id"
+		end
+		
+	end
+	
+	# GET /GetUserByName
+	# GET /GetUserByName.json
+	def GetUserByName
+		toFind = params[:user]
+		
+		@user = User.find_by(name: toFind)		
+	end
 end

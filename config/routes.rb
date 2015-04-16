@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   get 'api/UpdatePlaces'
   get 'api/DestroyPlaces'
   get 'api/GetUsers'
+  get 'api/GetUserByName'
   get 'api/PostUsers'
+  get 'api/DestroyUsers'
+  
   
   
   resources :places
